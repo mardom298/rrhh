@@ -1,39 +1,40 @@
 @echo off
 echo ========================================
-echo  INSTALADOR SISTEMA RRHH - GRUPO BALLESTEROS
+echo INSTALADOR SISTEMA RRHH BALLESTEROS
 echo ========================================
 
 echo.
-echo 1. Creando directorio del proyecto...
-cd C:\laragon\www
-mkdir sistema-rrhh-ballesteros
-cd sistema-rrhh-ballesteros
+echo 1. Instalando dependencias PHP...
+composer install
 
 echo.
-echo 2. Inicializando proyecto Laravel...
-composer create-project laravel/laravel . --prefer-dist
-
-echo.
-echo 3. Configurando permisos...
-mkdir storage\logs
-mkdir bootstrap\cache
-
-echo.
-echo 4. Instalando dependencias adicionales...
-composer require livewire/livewire
-composer require maatwebsite/excel
-composer require barryvdh/laravel-dompdf
-
-echo.
-echo 5. Instalando dependencias frontend...
+echo 2. Instalando dependencias Node.js...
 npm install
-npm install -D tailwindcss postcss autoprefixer @tailwindcss/forms
-npx tailwindcss init -p
+
+echo.
+echo 3. Configurando entorno...
+copy .env.example .env
+php artisan key:generate
+
+echo.
+echo 4. Ejecutando migraciones...
+php artisan migrate:fresh --seed
+
+echo.
+echo 5. Compilando assets...
+npm run build
 
 echo.
 echo ========================================
-echo  INSTALACION COMPLETADA
+echo INSTALACION COMPLETADA
 echo ========================================
 echo.
-echo Siguiente paso: Configurar base de datos
+echo Para iniciar el sistema:
+echo 1. npm run dev
+echo 2. php artisan serve (en otra terminal)
+echo.
+echo URL: http://127.0.0.1:8000
+echo Usuario: admin@ballesteros.com
+echo Password: password
+echo ========================================
 pause

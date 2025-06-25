@@ -1,0 +1,55 @@
+GUÍA DE INSTALACIÓN - SISTEMA RRHH BALLESTEROS
+=============================================
+
+1. CREAR PROYECTO LARAVEL BASE:
+   composer create-project laravel/laravel:^11.0 sistema-rrhh-ballesteros
+   cd sistema-rrhh-ballesteros
+
+2. REEMPLAZAR ARCHIVOS:
+   - Copiar composer.json (del CodeProject)
+   - Copiar .env.example (del CodeProject)
+   - Copiar bootstrap/app.php (del CodeProject)
+   - Copiar config/app.php (del CodeProject)
+
+3. CREAR CARPETAS Y ARCHIVOS:
+   database/migrations/
+   ├── 2024_01_01_000000_create_business_groups_table.php
+   ├── 2024_01_01_000001_create_companies_table.php
+   ├── 2024_01_01_000002_create_users_table.php
+   ├── 2024_01_01_000003_create_departments_table.php
+   ├── 2024_01_01_000004_create_positions_table.php
+   └── 2024_01_01_000005_create_employee_companies_table.php
+
+   app/Models/
+   ├── BusinessGroup.php
+   ├── Company.php
+   ├── User.php
+   ├── Department.php
+   ├── Position.php
+   └── EmployeeCompany.php
+
+   database/seeders/
+   ├── DatabaseSeeder.php
+   ├── BusinessGroupSeeder.php
+   ├── CompanySeeder.php
+   ├── UserSeeder.php
+   ├── DepartmentSeeder.php
+   ├── PositionSeeder.php
+   └── EmployeeCompanySeeder.php
+
+4. INSTALAR DEPENDENCIAS:
+   composer install
+   npm install
+
+5. CONFIGURAR:
+   cp .env.example .env
+   php artisan key:generate
+
+6. BASE DE DATOS:
+   - Crear BD: sistema_rrhh_ballesteros
+   - Configurar .env
+   - php artisan migrate:fresh --seed
+
+7. EJECUTAR:
+   npm run dev (terminal 1)
+   php artisan serve (terminal 2)
