@@ -1,142 +1,102 @@
-# Sistema de Recursos Humanos - Grupo Ballesteros
+# Sistema RRHH Grupo Ballesteros
 
-## 🏢 Descripción
-Sistema integral de RRHH diseñado específicamente para el Grupo Ballesteros, con arquitectura multi-tenant que permite gestionar empleados en múltiples empresas del grupo con planillas independientes.
+Sistema completo de Recursos Humanos para el Grupo Ballesteros, desarrollado en Laravel 11 con PHP 8.3.
 
-## ✅ Módulos Implementados
+## 🚀 Características
 
-### 1. 👥 Gestión Multi-Empresa
-- **BusinessGroup**: Grupo Ballesteros principal
-- **Companies**: Múltiples empresas del grupo
-- **EmployeeCompany**: Empleados trabajando en múltiples empresas
-- Dashboard consolidado del grupo
+- ✅ **Multi-tenant**: Soporte para múltiples empresas del grupo
+- ✅ **Empleados compartidos**: Un empleado puede trabajar en varias empresas
+- ✅ **Gestión completa**: Empleados, departamentos, posiciones
+- ✅ **Dashboard ejecutivo**: Métricas y estadísticas en tiempo real
+- ✅ **Responsive**: Interfaz moderna con Tailwind CSS
 
-### 2. 👤 Gestión de Empleados
-- Empleados globales con ID único
-- Asignación a múltiples empresas
-- Códigos de empleado por empresa
-- Salarios independientes por empresa
-- Empresa principal designada
+## 📋 Requisitos
 
-### 3. ⏰ Control de Asistencia
-- Registro de entrada/salida
-- Control de horas trabajadas
-- Reportes de asistencia por empresa
-
-### 4. 🏖️ Gestión de Licencias
-- Solicitudes de vacaciones
-- Permisos médicos
-- Aprobaciones por empresa
-- Balance de días disponibles
-
-### 5. 💰 Sistema de Nómina
-- Cálculo independiente por empresa
-- Conceptos de pago configurables
-- Descuentos y bonificaciones
-- Cumplimiento legal peruano
-- Reportes consolidados
-
-### 6. 📊 Evaluaciones de Desempeño
-- Evaluaciones periódicas
-- Métricas personalizables
-- Seguimiento de objetivos
-- Reportes de rendimiento
-
-### 7. 🎯 Sistema de Reclutamiento
-- Publicación de vacantes
-- Gestión de candidatos
-- Proceso de entrevistas
-- Seguimiento de aplicaciones
-
-### 8. 📈 Reportería Avanzada
-- Reportes por empresa
-- Consolidados del grupo
-- Métricas de RRHH
-- Exportación a Excel/PDF
-
-## 🛠️ Tecnologías Utilizadas
-- **Backend**: Laravel 10 + PHP 8.1+
-- **Frontend**: Livewire + Alpine.js + Tailwind CSS
-- **Base de Datos**: MySQL/MariaDB/PostgreSQL
-- **Autenticación**: Laravel Breeze
-- **Colas**: Laravel Queues para nómina
-- **Reportes**: Laravel Excel
-
-## 🚀 Características Especiales
-- ✅ **Multi-tenant**: Un empleado en múltiples empresas
-- ✅ **Planillas separadas**: Cada empresa mantiene su nómina
-- ✅ **Compliance peruano**: Cumple normativas laborales
-- ✅ **Escalable**: Arquitectura preparada para crecimiento
-- ✅ **Seguro**: Roles y permisos por empresa
-- ✅ **Moderno**: Interfaz responsive y intuitiva
-
-## 📦 Instalación
-
-### Requisitos
-- PHP 8.1+
+- PHP 8.2+
+- Laravel 11
+- MySQL/MariaDB
 - Composer
-- Node.js 16+
-- MySQL/MariaDB/PostgreSQL
-- Laragon (recomendado para desarrollo)
+- Node.js & NPM
 
-### Pasos de Instalación
+## 🔧 Instalación
+
+1. **Clonar/Descomprimir el proyecto**
 \`\`\`bash
-# 1. Clonar repositorio
-git clone [repositorio] sistema-rrhh-ballesteros
-cd sistema-rrhh-ballesteros
+# Colocar en C:\laragon\www\sistema-rrhh-ballesteros
+\`\`\`
 
-# 2. Instalar dependencias PHP
+2. **Instalar dependencias**
+\`\`\`bash
 composer install
-
-# 3. Configurar base de datos
-cp .env.example .env
-# Editar .env con datos de tu BD
-
-# 4. Generar key y migrar
-php artisan key:generate
-php artisan migrate:fresh --seed
-
-# 5. Instalar dependencias frontend
 npm install
-npm run build
+\`\`\`
 
-# 6. Iniciar servidor
+3. **Configurar entorno**
+\`\`\`bash
+cp .env.example .env
+php artisan key:generate
+\`\`\`
+
+4. **Configurar base de datos**
+\`\`\`bash
+# Editar .env con datos de tu BD
+DB_DATABASE=sistema_rrhh_ballesteros
+DB_USERNAME=root
+DB_PASSWORD=
+\`\`\`
+
+5. **Ejecutar migraciones**
+\`\`\`bash
+php artisan migrate:fresh --seed
+\`\`\`
+
+6. **Compilar assets**
+\`\`\`bash
+npm run dev
+\`\`\`
+
+7. **Iniciar servidor**
+\`\`\`bash
 php artisan serve
 \`\`\`
 
-### Datos de Prueba
-- **Usuario Admin**: admin@ballesteros.com
+## 🎯 Acceso al Sistema
+
+- **URL**: http://127.0.0.1:8000
+- **Usuario**: admin@ballesteros.com
 - **Contraseña**: password
-- **Empresas**: 10+ empresas del Grupo Ballesteros
-- **Empleados**: 50+ empleados de prueba
 
-## 🎯 Casos de Uso Principales
+## 📊 Módulos Incluidos
 
-### Empleado Multi-Empresa
-Juan Pérez trabaja en:
-- **Constructora Ballesteros** (Principal) - Código: EMP001 - Salario: S/4,500
-- **Logística Ballesteros** (Secundaria) - Código: LOG015 - Salario: S/1,500
+- **Dashboard**: Métricas y estadísticas
+- **Empleados**: Gestión multi-empresa
+- **Empresas**: Administración del grupo
+- **Departamentos**: Organización por áreas
+- **Posiciones**: Cargos y salarios
 
-### Nómina Separada
-- Cada empresa calcula su planilla independientemente
-- Reportes consolidados a nivel grupo
-- Cumplimiento tributario por empresa
+## 🏢 Empresas de Ejemplo
 
-### Dashboard Ejecutivo
-- Vista consolidada de todas las empresas
-- Métricas globales del grupo
-- Empleados activos por empresa
-- Costos de nómina consolidados
+1. **Ballesteros Construcción** (RUC: 20111111111)
+2. **Ballesteros Logística** (RUC: 20222222222)
+3. **Ballesteros Tecnología** (RUC: 20333333333)
 
-## 📊 Próximas Funcionalidades
-- [ ] Integración con SUNAT
-- [ ] App móvil para marcado
-- [ ] Inteligencia artificial para RRHH
-- [ ] Integración con bancos
-- [ ] Portal del empleado
+## 👥 Usuarios de Prueba
 
-## 🤝 Soporte
-Para soporte técnico o consultas sobre el sistema, contactar al equipo de desarrollo.
+- **Carlos Ballesteros**: Gerente en todas las empresas
+- **María García**: RRHH en Construcción y Tecnología
+- **Luis Rodríguez**: Consultor en Tecnología
+
+## 🛠️ Tecnologías
+
+- **Backend**: Laravel 11, PHP 8.3
+- **Frontend**: Blade, Tailwind CSS
+- **Base de Datos**: MySQL/MariaDB
+- **Herramientas**: Vite, Composer, NPM
+
+## 📞 Soporte
+
+Para soporte técnico, contactar al equipo de desarrollo.
 
 ---
-**Desarrollado para el Grupo Ballesteros** 🏢
+
+**© 2024 Grupo Ballesteros - Sistema RRHH**

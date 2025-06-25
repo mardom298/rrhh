@@ -2,7 +2,7 @@ import defaultTheme from "tailwindcss/defaultTheme"
 import forms from "@tailwindcss/forms"
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ["class"],
   content: [
     "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
@@ -14,9 +14,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["Figtree", ...defaultTheme.fontFamily.sans],
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,7 +54,10 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+      },
     },
   },
-  plugins: [require("tailwindcss-animate"), forms],
+  plugins: [forms, require("tailwindcss-animate")],
 }

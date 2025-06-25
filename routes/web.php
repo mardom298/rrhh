@@ -1,22 +1,23 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-use App\Livewire\EmployeeManagement;
-use App\Livewire\PayrollManagement;
-use App\Livewire\PerformanceEvaluations;
-use App\Livewire\RecruitmentManagement;
-use App\Livewire\ReportsManagement;
-use App\Livewire\GroupDashboard;
-use App\Livewire\MultiCompanyEmployeeManagement;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::get('/employees', function () {
+    $employees = \App\Models\User::with(['businessGroup', 'activeEmployeeCompanies.company', 'activeEmployeeCompanies.department', 'activeEmployeeCompanies.position'])
+        ->paginate(10);
+    
+    return view('employees.index', compact('employees'));
+})->name('employees.index');
+
+Route::get('/companies', function () {
+    $companies = \App\Models\Company::with(['businessGroup', 'activeEmployees', 'departments'])
+        ->where('status', 'active')
+        ->paginate(10);
+    
+    return view('companies.index', compact('companies'));
+})->name('companies.index');

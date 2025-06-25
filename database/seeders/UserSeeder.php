@@ -39,5 +39,20 @@ class UserSeeder extends Seeder
             'address' => 'Av. Secundaria 456, Lima, Perú',
             'employee_type' => 'permanent'
         ]);
+
+        User::create([
+            'business_group_id' => 1,
+            'global_employee_id' => 'EMP-003',
+            'dni' => '11223344',
+            'first_name' => 'Luis',
+            'last_name' => 'Rodríguez',
+            'email' => 'luis.rodriguez@ballesteros.com',
+            'password' => Hash::make('password'),
+            'phone' => '+51 999 111 222',
+            'birth_date' => '1990-07-10',
+            'gender' => 'male',
+            'address' => 'Av. Tercera 789, Lima, Perú',
+            'employee_type' => 'consultant'
+        ]);
     }
 }

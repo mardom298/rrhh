@@ -1,268 +1,126 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard - Sistema RRHH Grupo Ballesteros') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                        <div class="bg-blue-100 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-blue-800">Empresas Activas</h3>
-                            <p class="text-2xl font-bold text-blue-600">{{ $stats['total_companies'] }}</p>
+@section('content')
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
+            <h2 class="text-2xl font-bold mb-6">Dashboard - {{ $businessGroup->name ?? 'Sistema RRHH' }}</h2>
+            
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-blue-500 rounded-md">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
                         </div>
-                        <div class="bg-green-100 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-green-800">Total Empleados</h3>
-                            <p class="text-2xl font-bold text-green-600">{{ $stats['total_employees'] }}</p>
-                        </div>
-                        <div class="bg-yellow-100 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-yellow-800">Empleados Activos</h3>
-                            <p class="text-2xl font-bold text-yellow-600">{{ $stats['active_employees'] }}</p>
-                        </div>
-                        <div class="bg-purple-100 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold text-purple-800">Grupo</h3>
-                            <p class="text-lg font-bold text-purple-600">{{ $stats['business_group']->name ?? 'N/A' }}</p>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Empresas</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ $stats['total_companies'] }}</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h3 class="text-lg font-semibold mb-4">¡Bienvenido al Sistema RRHH!</h3>
-                        <p class="text-gray-600">
-                            Sistema completo de Recursos Humanos para el Grupo Ballesteros.
-                            Compatible con Laravel 11 y PHP 8.3.
-                        </p>
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-green-500 rounded-md">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Total Empleados</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ $stats['total_employees'] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-yellow-500 rounded-md">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Empleados Activos</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ $stats['active_employees'] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-purple-500 rounded-md">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Departamentos</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ $stats['total_departments'] }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Header -->
-    <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900">Dashboard de Recursos Humanos</h1>
-        <p class="mt-2 text-gray-600">Resumen general de la gestión de personal</p>
-    </div>
-
-    <!-- Métricas principales -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="p-5">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="ml-5 w-0 flex-1">
-                        <dl>
-                            <dt class="text-sm font-medium text-gray-500 truncate">Total Empleados</dt>
-                            <dd class="text-lg font-medium text-gray-900">{{ $totalEmployees }}</dd>
-                        </dl>
-                    </div>
+            <!-- Recent Employees -->
+            <div class="bg-white shadow rounded-lg mb-8">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900">Empleados Recientes</h3>
                 </div>
-            </div>
-        </div>
-
-        <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="p-5">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="ml-5 w-0 flex-1">
-                        <dl>
-                            <dt class="text-sm font-medium text-gray-500 truncate">Presentes Hoy</dt>
-                            <dd class="text-lg font-medium text-gray-900">{{ $presentToday }}</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="p-5">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="ml-5 w-0 flex-1">
-                        <dl>
-                            <dt class="text-sm font-medium text-gray-500 truncate">Licencias Pendientes</dt>
-                            <dd class="text-lg font-medium text-gray-900">{{ $pendingLeaves }}</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="p-5">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zM3 9a2 2 0 012-2h14a2 2 0 012 2v1a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                        </svg>
-                    </div>
-                    <div class="ml-5 w-0 flex-1">
-                        <dl>
-                            <dt class="text-sm font-medium text-gray-500 truncate">Cumpleaños Este Mes</dt>
-                            <dd class="text-lg font-medium text-gray-900">{{ $birthdaysThisMonth }}</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Gráficos y tablas -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <!-- Gráfico de asistencia semanal -->
-        <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="px-4 py-5 sm:p-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Asistencia Semanal</h3>
-                <canvas id="weeklyAttendanceChart" width="400" height="200"></canvas>
-            </div>
-        </div>
-
-        <!-- Distribución por departamentos -->
-        <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="px-4 py-5 sm:p-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Empleados por Departamento</h3>
-                <canvas id="departmentChart" width="400" height="200"></canvas>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tablas de información -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Solicitudes de licencia recientes -->
-        <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="px-4 py-5 sm:p-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Solicitudes de Licencia Recientes</h3>
-                <div class="flow-root">
-                    <ul class="-my-5 divide-y divide-gray-200">
-                        @forelse($recentLeaveRequests as $request)
-                        <li class="py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate">
-                                        {{ $request->user->full_name }}
-                                    </p>
-                                    <p class="text-sm text-gray-500">
-                                        {{ $request->type_name }} - {{ $request->days_requested }} días
-                                    </p>
-                                </div>
-                                <div class="inline-flex items-center text-sm">
-                                    <span class="px-2 py-1 text-xs font-medium rounded-full 
-                                        @if($request->status === 'pending') bg-yellow-100 text-yellow-800
-                                        @elseif($request->status === 'approved') bg-green-100 text-green-800
-                                        @else bg-red-100 text-red-800 @endif">
-                                        {{ $request->status_name }}
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Empleado</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Empresas</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach($recentEmployees as $employee)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">{{ $employee->full_name }}</div>
+                                    <div class="text-sm text-gray-500">{{ $employee->global_employee_id }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $employee->email }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    {{ $employee->activeEmployeeCompanies->pluck('company.name')->join(', ') }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        {{ ucfirst($employee->employee_type) }}
                                     </span>
-                                </div>
-                            </div>
-                        </li>
-                        @empty
-                        <li class="py-4 text-center text-gray-500">
-                            No hay solicitudes recientes
-                        </li>
-                        @endforelse
-                    </ul>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
 
-        <!-- Cumpleaños próximos -->
-        <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="px-4 py-5 sm:p-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Cumpleaños Próximos</h3>
-                <div class="flow-root">
-                    <ul class="-my-5 divide-y divide-gray-200">
-                        @forelse($upcomingBirthdays as $employee)
-                        <li class="py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate">
-                                        {{ $employee->full_name }}
-                                    </p>
-                                    <p class="text-sm text-gray-500">
-                                        {{ $employee->department->name ?? 'Sin departamento' }}
-                                    </p>
-                                </div>
-                                <div class="inline-flex items-center text-sm text-gray-500">
-                                    {{ $employee->birth_date->format('d/m') }}
-                                </div>
-                            </div>
-                        </li>
-                        @empty
-                        <li class="py-4 text-center text-gray-500">
-                            No hay cumpleaños próximos
-                        </li>
-                        @endforelse
-                    </ul>
+            <!-- Companies Overview -->
+            <div class="bg-white shadow rounded-lg">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900">Resumen por Empresa</h3>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        @foreach($companiesData as $company)
+                        <div class="border rounded-lg p-4">
+                            <h4 class="font-medium text-gray-900">{{ $company['name'] }}</h4>
+                            <p class="text-sm text-gray-600">{{ $company['employees_count'] }} empleados</p>
+                            <p class="text-sm text-gray-600">Nómina: S/ {{ number_format($company['total_salary'], 2) }}</p>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Gráfico de asistencia semanal
-    const weeklyCtx = document.getElementById('weeklyAttendanceChart').getContext('2d');
-    new Chart(weeklyCtx, {
-        type: 'line',
-        data: {
-            labels: {!! json_encode(collect($weeklyAttendance)->pluck('day')) !!},
-            datasets: [{
-                label: 'Empleados Presentes',
-                data: {!! json_encode(collect($weeklyAttendance)->pluck('present')) !!},
-                borderColor: 'rgb(59, 130, 246)',
-                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                tension: 0.1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    // Gráfico de distribución por departamentos
-    const deptCtx = document.getElementById('departmentChart').getContext('2d');
-    new Chart(deptCtx, {
-        type: 'doughnut',
-        data: {
-            labels: {!! json_encode($departmentDistribution->pluck('name')) !!},
-            datasets: [{
-                data: {!! json_encode($departmentDistribution->pluck('count')) !!},
-                backgroundColor: [
-                    '#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6',
-                    '#06B6D4', '#84CC16', '#F97316', '#EC4899', '#6B7280'
-                ]
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }
-    });
-});
-</script>
-</x-app-layout>
+@endsection
