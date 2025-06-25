@@ -14,12 +14,17 @@ class BusinessGroup extends Model
         'name',
         'ruc',
         'description',
+        'legal_representative',
         'address',
         'phone',
         'email',
         'website',
-        'logo',
-        'status'
+        'status',
+        'settings'
+    ];
+
+    protected $casts = [
+        'settings' => 'array'
     ];
 
     public function companies(): HasMany
@@ -30,5 +35,10 @@ class BusinessGroup extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    public function activeCompanies(): HasMany
+    {
+        return $this->hasMany(Company::class)->where('status', 'active');
     }
 }

@@ -1,6 +1,45 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard - Sistema RRHH Grupo Ballesteros') }}
+        </h2>
+    </x-slot>
 
-@section('content')
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                        <div class="bg-blue-100 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-blue-800">Empresas Activas</h3>
+                            <p class="text-2xl font-bold text-blue-600">{{ $stats['total_companies'] }}</p>
+                        </div>
+                        <div class="bg-green-100 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-green-800">Total Empleados</h3>
+                            <p class="text-2xl font-bold text-green-600">{{ $stats['total_employees'] }}</p>
+                        </div>
+                        <div class="bg-yellow-100 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-yellow-800">Empleados Activos</h3>
+                            <p class="text-2xl font-bold text-yellow-600">{{ $stats['active_employees'] }}</p>
+                        </div>
+                        <div class="bg-purple-100 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-purple-800">Grupo</h3>
+                            <p class="text-lg font-bold text-purple-600">{{ $stats['business_group']->name ?? 'N/A' }}</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-4">¡Bienvenido al Sistema RRHH!</h3>
+                        <p class="text-gray-600">
+                            Sistema completo de Recursos Humanos para el Grupo Ballesteros.
+                            Compatible con Laravel 11 y PHP 8.3.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Header -->
     <div class="mb-8">
@@ -226,4 +265,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-@endsection
+</x-app-layout>

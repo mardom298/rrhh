@@ -20,13 +20,6 @@ class Department extends Model
         'status'
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'budget' => 'decimal:2',
-        ];
-    }
-
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
@@ -40,5 +33,10 @@ class Department extends Model
     public function positions(): HasMany
     {
         return $this->hasMany(Position::class);
+    }
+
+    public function employeeCompanies(): HasMany
+    {
+        return $this->hasMany(EmployeeCompany::class);
     }
 }

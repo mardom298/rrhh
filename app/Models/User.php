@@ -32,8 +32,7 @@ class User extends Authenticatable
         'certifications',
         'skills',
         'tax_id',
-        'settings',
-        'status'
+        'settings'
     ];
 
     protected $hidden = [
@@ -49,7 +48,7 @@ class User extends Authenticatable
             'birth_date' => 'date',
             'certifications' => 'array',
             'skills' => 'array',
-            'settings' => 'array',
+            'settings' => 'array'
         ];
     }
 
@@ -61,6 +60,11 @@ class User extends Authenticatable
     public function employeeCompanies(): HasMany
     {
         return $this->hasMany(EmployeeCompany::class);
+    }
+
+    public function activeEmployeeCompanies(): HasMany
+    {
+        return $this->hasMany(EmployeeCompany::class)->where('status', 'active');
     }
 
     public function getFullNameAttribute(): string

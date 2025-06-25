@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Company;
+use Illuminate\Database\Seeder;
 
 class CompanySeeder extends Seeder
 {
@@ -14,17 +14,20 @@ class CompanySeeder extends Seeder
                 'name' => 'Ballesteros Construcción',
                 'ruc' => '20111111111',
                 'business_name' => 'Ballesteros Construcción S.A.C.',
+                'description' => 'Empresa líder en construcción y obras civiles'
             ],
             [
                 'name' => 'Ballesteros Logística',
                 'ruc' => '20222222222',
                 'business_name' => 'Ballesteros Logística S.R.L.',
+                'description' => 'Servicios de transporte y logística integral'
             ],
             [
                 'name' => 'Ballesteros Tecnología',
                 'ruc' => '20333333333',
-                'business_name' => 'Ballesteros Tecnología E.I.R.L.',
-            ],
+                'business_name' => 'Ballesteros Tech S.A.C.',
+                'description' => 'Soluciones tecnológicas y desarrollo de software'
+            ]
         ];
 
         foreach ($companies as $company) {
@@ -33,10 +36,10 @@ class CompanySeeder extends Seeder
                 'name' => $company['name'],
                 'ruc' => $company['ruc'],
                 'business_name' => $company['business_name'],
-                'description' => 'Empresa del Grupo Ballesteros',
+                'description' => $company['description'],
                 'address' => 'Av. Principal 123, Lima, Perú',
                 'phone' => '+51 1 234-5678',
-                'email' => strtolower(str_replace(' ', '', $company['name'])) . '@grupoballesteros.com',
+                'email' => strtolower(str_replace(' ', '', $company['name'])) . '@ballesteros.com',
                 'status' => 'active'
             ]);
         }

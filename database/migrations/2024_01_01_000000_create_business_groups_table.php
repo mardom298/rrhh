@@ -12,11 +12,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('ruc', 11)->unique();
-            $table->text('address');
-            $table->string('phone', 20)->nullable();
-            $table->string('email')->nullable();
+            $table->text('description')->nullable();
             $table->string('legal_representative');
-            $table->boolean('active')->default(true);
+            $table->string('address');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('website')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->json('settings')->nullable();
             $table->timestamps();
         });
     }

@@ -22,7 +22,14 @@ class Company extends Model
         'email',
         'website',
         'logo',
-        'status'
+        'status',
+        'tax_settings',
+        'payroll_settings'
+    ];
+
+    protected $casts = [
+        'tax_settings' => 'array',
+        'payroll_settings' => 'array'
     ];
 
     public function businessGroup(): BelongsTo
@@ -38,5 +45,10 @@ class Company extends Model
     public function employeeCompanies(): HasMany
     {
         return $this->hasMany(EmployeeCompany::class);
+    }
+
+    public function activeEmployees(): HasMany
+    {
+        return $this->hasMany(EmployeeCompany::class)->where('status', 'active');
     }
 }

@@ -8,15 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('positions', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('department_id')->constrained()->onDelete('cascade');
-            $table->string('title');
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
+            $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('min_salary', 10, 2);
-            $table->decimal('max_salary', 10, 2);
-            $table->json('requirements')->nullable();
-            $table->json('responsibilities')->nullable();
+            $table->foreignId('manager_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->string('budget')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
@@ -24,6 +22,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('positions');
+        Schema::dropIfExists('departments');
     }
 };
