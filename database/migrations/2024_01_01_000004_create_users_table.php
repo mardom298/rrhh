@@ -6,11 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->string('employee_code')->unique();
             $table->string('dni', 8)->unique();
             $table->string('first_name');
@@ -18,28 +17,21 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone')->nullable();
+            $table->string('phone', 20)->nullable();
+            $table->text('address')->nullable();
             $table->date('birth_date')->nullable();
-            $table->enum('gender', ['M', 'F', 'O'])->nullable();
-            $table->string('address')->nullable();
-            $table->string('emergency_contact_name')->nullable();
-            $table->string('emergency_contact_phone')->nullable();
-            $table->foreignId('department_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('position_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('manager_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->date('hire_date')->nullable();
-            $table->date('termination_date')->nullable();
-            $table->enum('status', ['active', 'inactive', 'terminated'])->default('active');
-            $table->decimal('salary', 10, 2)->nullable();
-            $table->string('bank_account')->nullable();
-            $table->string('avatar')->nullable();
-            $table->json('settings')->nullable();
+            $table->enum('gender', ['M', 'F', 'Other'])->nullable();
+            $table->enum('marital_status', ['Single', 'Married', 'Divorced', 'Widowed'])->nullable();
+            $table->date('hire_date');
+            $table->enum('status', ['Active', 'Inactive', 'Suspended', 'Terminated'])->default('Active');
+            $table->enum('role', ['admin', 'hr', 'manager', 'employee'])->default('employee');
+            $table->string('profile_photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('users');
     }

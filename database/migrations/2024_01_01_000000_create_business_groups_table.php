@@ -6,22 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('business_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Grupo Ballesteros
-            $table->string('code')->unique(); // GB001
-            $table->string('ruc_group', 11)->unique(); // RUC del grupo
-            $table->text('description')->nullable();
-            $table->string('logo')->nullable();
-            $table->json('settings')->nullable();
+            $table->string('name');
+            $table->string('ruc', 11)->unique();
+            $table->text('address');
+            $table->string('phone', 20)->nullable();
+            $table->string('email')->nullable();
+            $table->string('legal_representative');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('business_groups');
     }

@@ -6,22 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->string('code')->unique();
             $table->text('description')->nullable();
             $table->foreignId('manager_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->foreignId('parent_id')->nullable()->constrained('departments')->onDelete('cascade');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('departments');
     }
