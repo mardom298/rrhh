@@ -14,16 +14,18 @@ class Department extends Model
     protected $fillable = [
         'company_id',
         'name',
-        'code',
         'description',
         'manager_id',
-        'parent_id',
-        'active'
+        'budget',
+        'status'
     ];
 
-    protected $casts = [
-        'active' => 'boolean'
-    ];
+    protected function casts(): array
+    {
+        return [
+            'budget' => 'decimal:2',
+        ];
+    }
 
     public function company(): BelongsTo
     {
@@ -35,28 +37,8 @@ class Department extends Model
         return $this->belongsTo(User::class, 'manager_id');
     }
 
-    public function parent(): BelongsTo
-    {
-        return $this->belongsTo(Department::class, 'parent_id');
-    }
-
-    public function children(): HasMany
-    {
-        return $this->hasMany(Department::class, 'parent_id');
-    }
-
-    public function users(): HasMany
-    {
-        return $this->hasMany(User::class);
-    }
-
     public function positions(): HasMany
     {
         return $this->hasMany(Position::class);
-    }
-
-    public function getEmployeeCountAttribute(): int
-    {
-        return $this->users()->where('status', 'active')->count();
     }
 }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BusinessGroup;
+use App\Models\Company;
 use App\Models\User;
+use App\Models\EmployeeCompany;
 use App\Models\Department;
 use App\Models\AttendanceRecord;
 use App\Models\LeaveRequest;
@@ -61,6 +64,14 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
+        // Estadísticas generales
+        $stats = [
+            'total_companies' => Company::count(),
+            'total_employees' => User::count(),
+            'active_employees' => EmployeeCompany::where('status', 'active')->count(),
+            'business_groups' => BusinessGroup::count(),
+        ];
+
         return view('dashboard', compact(
             'totalEmployees',
             'presentToday',
@@ -69,7 +80,8 @@ class DashboardController extends Controller
             'weeklyAttendance',
             'departmentDistribution',
             'recentLeaveRequests',
-            'upcomingBirthdays'
+            'upcomingBirthdays',
+            'stats'
         ));
     }
 

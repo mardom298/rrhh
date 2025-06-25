@@ -13,27 +13,17 @@ class UserSeeder extends Seeder
         // Usuario administrador
         User::create([
             'business_group_id' => 1,
-            'global_employee_id' => 'GB-ADMIN-001',
+            'global_employee_id' => 'GB-001',
             'dni' => '12345678',
-            'first_name' => 'Carlos',
-            'last_name' => 'Ballesteros',
-            'email' => 'admin@ballesteros.com',
+            'first_name' => 'Admin',
+            'last_name' => 'Sistema',
+            'email' => 'admin@grupoballesteros.com',
             'password' => Hash::make('password'),
-            'phone' => '987654321',
-            'birth_date' => '1980-01-15',
-            'gender' => 'M',
-            'address' => 'Av. Javier Prado Este 123, San Isidro',
-            'emergency_contact_name' => 'María Ballesteros',
-            'emergency_contact_phone' => '987654322',
+            'phone' => '+51 999 999 999',
+            'birth_date' => '1990-01-01',
+            'gender' => 'male',
             'employee_type' => 'permanent',
-            'bank_account' => '123456789012345',
-            'certifications' => ['MBA', 'PMP'],
-            'skills' => ['Liderazgo', 'Gestión Empresarial', 'Finanzas'],
-            'tax_id' => '12345678',
-            'settings' => [
-                'notifications' => true,
-                'language' => 'es'
-            ]
+            'status' => 'active'
         ]);
 
         // Crear empleados adicionales

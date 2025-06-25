@@ -12,17 +12,14 @@ class BusinessGroup extends Model
 
     protected $fillable = [
         'name',
-        'code',
-        'ruc_group',
+        'ruc',
         'description',
+        'address',
+        'phone',
+        'email',
+        'website',
         'logo',
-        'settings',
-        'active'
-    ];
-
-    protected $casts = [
-        'settings' => 'array',
-        'active' => 'boolean'
+        'status'
     ];
 
     public function companies(): HasMany
@@ -33,25 +30,5 @@ class BusinessGroup extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
-    }
-
-    public function getTotalEmployeesAttribute(): int
-    {
-        return $this->users()->count();
-    }
-
-    public function getActiveCompaniesAttribute(): int
-    {
-        return $this->companies()->where('active', true)->count();
-    }
-
-    public function getTotalPayrollAttribute(): float
-    {
-        return $this->companies()
-            ->with(['employeeCompanies'])
-            ->get()
-            ->sum(function($company) {
-                return $company->employeeCompanies->where('status', 'active')->sum('base_salary');
-            });
     }
 }
