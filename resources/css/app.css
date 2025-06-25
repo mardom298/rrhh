@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+}
+
 /* Variables CSS personalizadas */
 :root {
   --primary: 220 14% 96%;
@@ -48,53 +54,54 @@
   --ring: 224.3 76.3% 94.1%;
 }
 
-/* Estilos personalizados para el sistema RRHH */
-.btn-primary {
-  @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
-}
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+  }
 
-.btn-secondary {
-  @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors;
-}
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors;
+  }
 
-.card {
-  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
-}
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  }
 
-.form-input {
-  @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500;
-}
+  .form-input {
+    @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500;
+  }
 
-.table-responsive {
-  @apply overflow-x-auto shadow ring-1 ring-black ring-opacity-5 rounded-lg;
-}
+  .table-responsive {
+    @apply overflow-x-auto shadow ring-1 ring-black ring-opacity-5 rounded-lg;
+  }
 
-.table-responsive table {
-  @apply min-w-full divide-y divide-gray-300;
-}
+  .table-responsive table {
+    @apply min-w-full divide-y divide-gray-300;
+  }
 
-.table-responsive th {
-  @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50;
-}
+  .table-responsive th {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50;
+  }
 
-.table-responsive td {
-  @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
-}
+  .table-responsive td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+  }
 
-.badge {
-  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-}
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
 
-.badge-success {
-  @apply bg-green-100 text-green-800;
-}
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
 
-.badge-warning {
-  @apply bg-yellow-100 text-yellow-800;
-}
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
 
-.badge-danger {
-  @apply bg-red-100 text-red-800;
+  .badge-danger {
+    @apply bg-red-100 text-red-800;
+  }
 }
 
 * {

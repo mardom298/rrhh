@@ -3,9 +3,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "build-mix": "mix production",
-    "dev": "vite dev",
-    "dev-mix": "mix watch"
+    "dev": "vite dev"
   },
   "dependencies": {
     "@babel/core": "latest",
@@ -18,6 +16,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "jiti": "latest",
+    "laravel-mix": "latest",
     "less": "latest",
     "lightningcss": "latest",
     "lucide-react": "^0.454.0",
@@ -43,7 +42,6 @@
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.12",
     "axios": "^1.6.4",
-    "laravel-mix": "^6.0.49",
     "laravel-vite-plugin": "^1.0.0",
     "postcss": "^8.5",
     "tailwindcss": "^3.2.1",

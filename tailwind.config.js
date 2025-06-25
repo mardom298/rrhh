@@ -9,6 +9,7 @@ export default {
     "./resources/views/**/*.blade.php",
     "./resources/js/**/*.js",
     "./resources/**/*.vue",
+    "./app/**/*.php",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -68,5 +69,5 @@ export default {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms"), require("tailwindcss-animate")],
+  plugins: [],
 }
