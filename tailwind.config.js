@@ -1,5 +1,3 @@
-import defaultTheme from "tailwindcss/defaultTheme"
-
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -15,7 +13,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+        sans: [
+          "Figtree",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+        ],
       },
       colors: {
         border: "hsl(var(--border))",
